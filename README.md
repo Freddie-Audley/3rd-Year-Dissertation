@@ -40,7 +40,7 @@ Reproducibility
 Identify critical path
 -->
 
-## Resources and Risks
+## Resources & Risks
 <!--
 Software
 Hardware
