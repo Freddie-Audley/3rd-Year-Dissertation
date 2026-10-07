@@ -25,6 +25,8 @@ Correlation analysis
 ## Methods & Methodology
 
 <!--
+PennyLane (Python), NumPy, PyTorch etc
+
 Literature
 Identify QML architectures
 Problem selection
