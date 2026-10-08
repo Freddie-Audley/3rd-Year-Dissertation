@@ -8,53 +8,74 @@ Variational quantum machine learning (QML) models can be represented by truncate
 
 ## Problem Statement
 
-<!--
 Introduce the concept of the project, explain what is known, what we need to know and why we need to know it, then summarise what learning needs to be done
--->
+
+Results about how sparsity affects generalisation behaviour are known* but have not yet been rigorously extended beyond theory. The aim of this project is to create and train various QML models so that experimental data can be obtained, which would be used to analyse how sparsity correlates to the generalisation gap.
+
+* Reference paper discussing this
+
+Wording needs improving and this section needs extending
+
 
 ## Objectives
 
-<!--
-Review literature
-Create models
-Fourier analysis
-Generalisation experiments
-Correlation analysis
--->
+Complete preliminary research into:
+- Quantum Computing
+- QML
+- Fourier representation of QML models
+- Fourier spectra of QML models
+
+Create a pipeline for the creation, training and evaluation of QML models using PennyLane
+
+Use this pipeline to conduct experiments on relevant QML problems
+
+Evaluate and interpret the data gathered from these experiments
 
 ## Methods & Methodology
 
-<!--
-PennyLane (Python), NumPy, PyTorch etc
+Python: PennyLane, NumPy and an appropriate ML library
+- I presume Python is the best and perhaps only relevant choice?
 
-Literature
-Identify QML architectures
-Problem selection
-Fourier spectrum extraction
-Define sparsity
-Generalisation measurement
-Statistical analysis
-Reproducibility
--->
+Brief explanation of QML and Fourier representation, and Fourier sparsity
+
+A QML pipeline that can be extended for use on relevant problems will be created
+
+Define generalisation gap and why it is relevant
 
 ## Timetable
-<!--
-Identify critical path
--->
+
+Term 1:
+- Research quantum computing
+- Research QML
+- Research Fourier representation of QML models
+- Produce a basic QML pipeline using PennyLane in parallel with the above two points
+
+Term 1-2
+- Research Fourier spectra of QML models, including training and evaluation of generalisation gap
+
+Term 2
+- Use the pipeline to create models for "relevant" problems
+- Evaluation & interpretation
 
 ## Resources & Risks
-<!--
-Software
-Hardware
-Data source
 
-Identify risks
--->
+Quantum computing lecture notes
+Other sources used will be referenced in the final report
+
+PennyLane codebook - introductory topics in quantum computing with a parallel coding course
+
+Version control using GitHub
+
+Hardware? I have a PC and laptop, and there are DCS machines. Is this a relevant sub-section?
+
+Risks:
+  Not really sure what would go here
 
 ## Legal, Social, Ethical and Professional Issues & Considerations
-<!--
-Minimal legal
-Acknowledge exaggerated quantum computing and machine learning claims
-Not collecting personal data
-Reproducibility, transparency, version control usage, statistical analysis
--->
+
+No intention to collect personal data, but if public data is used its integrity should be confirmed
+
+Experimental data obtained can/will be published (?)
+- Is GitHub an appropriate platform for this?
+
+Statistical analysis will be conducted using conventional methods
