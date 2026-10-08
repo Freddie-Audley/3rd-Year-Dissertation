@@ -1,6 +1,4 @@
-# Project Specification
-
-### Generalisation from Fourier Sparsity in Quantum Machine Learning
+# Generalisation from Fourier Sparsity in Quantum Machine Learning
 
 ## Abstract
 
