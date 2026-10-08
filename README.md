@@ -8,8 +8,6 @@ Variational quantum machine learning (QML) models can be represented by truncate
 
 ## Problem Statement
 
-Introduce the concept of the project, explain what is known, what we need to know and why we need to know it, then summarise what learning needs to be done
-
 Results about how sparsity affects generalisation behaviour are known* but have not yet been rigorously extended beyond theory. The aim of this project is to create and train various QML models so that experimental data can be obtained, which would be used to analyse how sparsity correlates to the generalisation gap.
 
 * Reference paper discussing this
