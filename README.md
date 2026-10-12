@@ -33,6 +33,7 @@ Create a pipeline for the creation, training and evaluation of QML models using 
 
 Use this pipeline to conduct experiments on relevant QML problems
 Provide a pool of architectures and problems that could be used
+https://pennylane.ai/datasets/conventional-datasets-for-qml - Hand drawn digits, flower classification, ant vs bee
 
 Evaluate the generalisation gap
 
