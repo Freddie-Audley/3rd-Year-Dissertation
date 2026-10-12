@@ -3,6 +3,30 @@
 \section{Methods \& Methodology}
 \label{sec:MethodsAndMethodology}
 
-\large{\raggedright
-Methods and methodology go here\\
+\subsection{Methodology}
+{\large
+\raggedright
+
+Quantum machine learning aims to leverage the exponential capacity of qubits to improve computational efficiency, pattern recognition capabilities, and data processing speed when compared to classical machine learning. In QML, the expectation value of a quantum neural network can be expressed as a finite Fourier series\cite{Schuld21}:
+\begin{equation}
+    f_{\theta}(x)=\sum_{\omega \in \Omega}c_{\omega}(\theta)e^{i \omega x}
+\end{equation}
+A model is considered "Fourier sparse" if $|\{\omega : c_{\omega}(\theta) \neq 0\}| \ll |\Omega|$; that is, if the number of non-zero Fourier coefficients is small relative to the total number of accessible frequencies.\\
+~\\
+A useful metric when evaluating the performance of a machine learning model is the generalisation gap\cite{RodriguezGrasa26}. This is empirically defined as
+\begin{equation}
+    \mathcal{L}_{test}-\mathcal{L}_{train}
+\end{equation}
+where $\mathcal{L}$ denotes the loss function. A generalisation gap of 0 implies that the model performs as well on unseen data as it does on the training data, while a high generalisation gap indicates a disparity. This would point to issues such as overfitting or underfitting.
+\par
 }
+
+\subsection{Implementation Details}
+{\large
+\raggedright
+QML models will be implemented in Python using the \href{https://pennylane.ai}{\color{blue} PennyLane} library for QC, alongside an appropriate ML library. The aim is to create a pipeline, perhaps implementing a simple ML problem, which can be extended to learn \href{https://pennylane.ai/datasets/conventional-datasets-for-qml}{\color{blue} conventional datasets} such as the MNIST\cite{LeCun98} dataset of hand-drawn digits.\\
+~\\
+To speed up the process of training, I intend to use the DCS Batch Compute system\footnotemark[1] so that training can take place round the clock.
+}
+
+\footnotetext[1]{\hangindent=1.8em \url{https://warwick.ac.uk/fac/sci/dcs/admissions/postgraduatetaughtdegrees/facilities_research/} "High-performance computing"}

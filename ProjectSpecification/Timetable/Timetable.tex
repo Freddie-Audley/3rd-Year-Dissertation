@@ -3,15 +3,57 @@
 \section{Timetable}
 \label{sec:Timetable}
 
+\begin{center}
+    \makebox[\textwidth][c]{%
+        \begin{ganttchart}[vgrid,
+                           hgrid,
+                           group/.append style={fill=none,draw=none},
+                           x unit=0.55cm,
+                           y unit title=0.6cm,
+                           y unit chart=1.2cm,
+                           title height=1,
+                           title top shift=0,
+                           title label anchor/.style={below=-1.5ex}
+                           ]{1}{27}
+            \gantttitle{Term 1}{10}
+            \gantttitle{}{4}
+            \gantttitle{Term 2}{10}
+            \gantttitle{}{3} \\
+                        
+            \gantttitlelist{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}{1}
+            \gantttitle{Christmas}{4}
+            \gantttitlelist{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}{1}
+            \gantttitle{Easter}{3} \\
+        
+            \ganttgroup{Research}{1}{27}
+            \ganttbar[inline]{QML}{2}{4}
+            \ganttbar[inline]{F-Rep\footnotemark[1]}{6}{8}
+            \ganttbar[inline]{F-Spectra + analysis\footnotemark[2]}{10}{16}\\
+        
+            \ganttgroup{Implementation}{1}{27}
+            \ganttbar[inline]{Pipeline}{4}{10}
+            \ganttbar[inline]{Chosen problems}{15}{21} \\
+
+            \ganttgroup{Evaluation}{1}{27}
+            \ganttbar[inline]{Evaluation\footnotemark[3]}{20}{23}\\
+        
+            \ganttgroup{Writing}{1}{27}
+            \ganttbar[inline]{Spec}{1}{2}
+            \ganttbar[inline]{PR\footnotemark[4]}{9}{10}
+            \ganttbar[inline]{Reports\footnotemark[5]}{23}{26}
+        \end{ganttchart}%
+    }
+\end{center}
+
+% bar/.append style={fill=gray!20}
+
 \large{\raggedright
-Timetable goes here\\
+QC research was conducted over the summer.\\
+Gaps have been left as buffers to account for external workload, illness etc.
 }
 
-\begin{center}
-\begin{tabularx}{\textwidth}{ | X | X | X | }
-\hline
-Cell 1 & Cell 2 & Cell 3 \\ \hline
-Cell 4 & Cell 5 & Cell 6 \\ \hline
-Cell 7 & Cell 8 & Cell 9 \\ \hline
-\end{tabularx}
-\end{center}
+\footnotetext[1]{Fourier representation of QML models}
+\footnotetext[2]{Fourier spectra of QML models and evaluation of generalisation gap}
+\footnotetext[3]{\hangindent=2em Analysis of the sparsity of the models' Fourier spectra \& evaluation of the models'\\generalisation gap}
+\footnotetext[4]{Progress Report}
+\footnotetext[4]{Project Management Report and Final Report}
