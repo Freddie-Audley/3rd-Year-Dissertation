@@ -6,39 +6,55 @@ Variational quantum machine learning (QML) models can be represented by truncate
 
 ## Problem Statement
 
-Results about how sparsity affects generalisation behaviour are known* but have not yet been rigorously extended beyond theory. The aim of this project is to create and train various QML models so that experimental data can be obtained, which would be used to analyse how sparsity correlates to the generalisation gap.
+Results about how sparsity affects generalisation behaviour are known* but have not yet been rigorously extended beyond theory. While theoretical results are known, we lack numerical explorations of how Fourier sparsity influences generalisation behaviour. In particular, given the current state of the literature, it is possible that the Fourier sparsity-based generalisation bounds proven so far are overly pessimistic and/or that other properties of the Fourier spectrum may hold more explanatory power for generalisation in QML models.
+
+The aim of this project is to create and train various QML models so that experimental data can be obtained, which would be used to analyse how sparsity correlates to the generalisation gap.
 
 * Reference paper discussing this
+https://arxiv.org/abs/1611.03530 Understanding deep learning requires rethinking generalization
+https://dl.acm.org/doi/10.1145/3446776 Understanding deep learning (still) requires rethinking generalization
+https://www.nature.com/articles/s41467-024-45882-z Understanding quantum machine learning also requires rethinking generalization
 
 Wording needs improving and this section needs extending
 
 
 ## Objectives
 
+Split into must have, should have, could have
+
 Complete preliminary research into:
 - Quantum Computing
 - QML
 - Fourier representation of QML models
 - Fourier spectra of QML models
+- Generalisation gap analysis
 
 Create a pipeline for the creation, training and evaluation of QML models using PennyLane
 
 Use this pipeline to conduct experiments on relevant QML problems
+Provide a pool of architectures and problems that could be used
 
-Evaluate and interpret the data gathered from these experiments
+Evaluate the generalisation gap
+
+* https://arxiv.org/abs/2603.22964 A PAC-Bayesian approach to generalization for quantum models
 
 ## Methods & Methodology
 
 Python: PennyLane, NumPy and an appropriate ML library
-- I presume Python is the best and perhaps only relevant choice?
+
+DCS Batch Compute system
 
 Brief explanation of QML and Fourier representation, and Fourier sparsity
 
 A QML pipeline that can be extended for use on relevant problems will be created
 
-Define generalisation gap and why it is relevant
+Define generalisation gap and why it is relevant, draw from classical literature
 
 ## Timetable
+
+Gantt chart/table
+
+Add buffer zones
 
 Term 1:
 - Research quantum computing
@@ -62,16 +78,16 @@ PennyLane codebook - introductory topics in quantum computing with a parallel co
 
 Version control using GitHub
 
-Hardware? I have a PC and laptop, and there are DCS machines. Is this a relevant sub-section?
+PC, laptop and DCS Batch Compute - "While small scale training will take place on my own hardware during the implementation phase, I intend to use the DCS Batch Compute system to train the models that will be used for analysis...
 
 Risks:
-  Not really sure what would go here
+Small scale experiments may not be sufficiently expressive to support interpretation -> DCS Batch Compute to mitigate this
+Delay in initial research as the topic is unfamiliar -> buffers in timetable
 
 ## Legal, Social, Ethical and Professional Issues & Considerations
 
 No intention to collect personal data, but if public data is used its integrity should be confirmed
 
-Experimental data obtained can/will be published (?)
-- Is GitHub an appropriate platform for this?
+Goal to publish experimental data on GitHub
 
-Statistical analysis will be conducted using conventional methods
+Statistical analysis will be conducted using conventional methods - give examples
