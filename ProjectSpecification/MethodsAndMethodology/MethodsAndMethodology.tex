@@ -3,28 +3,42 @@
 \section{Methods \& Methodology}
 \label{sec:MethodsAndMethodology}
 
-\subsection{Methodology}
+\subsection{Background}
 {\large
 \raggedright
 
-Quantum machine learning aims to leverage the exponential capacity of qubits to improve computational efficiency, pattern recognition capabilities, and data processing speed when compared to classical machine learning. In QML, the expectation value of a quantum neural network can be expressed as a finite Fourier series\cite{Schuld21}:
+Quantum machine learning investigates the use of quantum computational models for machine learning tasks, including whether quantum resources can provide advantages over classical approaches for particular problems. In QML, the expectation value of a quantum neural network can be expressed as a finite Fourier series \cite{Schuld21}:
 \begin{equation}
     f_{\theta}(x)=\sum_{\omega \in \Omega}c_{\omega}(\theta)e^{i \omega x}
 \end{equation}
-A model is considered "Fourier sparse" if $|\{\omega : c_{\omega}(\theta) \neq 0\}| \ll |\Omega|$; that is, if the number of non-zero Fourier coefficients is small relative to the total number of accessible frequencies.\\
-~\\
-A useful metric when evaluating the performance of a machine learning model is the generalisation gap\cite{RodriguezGrasa26}. This is empirically defined as
+A model is considered "Fourier sparse" if the number of non-zero Fourier coefficients is small relative to the total number of accessible frequencies:
 \begin{equation}
-    \mathcal{L}_{test}-\mathcal{L}_{train}
+    |\{\omega \in \Omega : | c_{\omega}(\theta) | \neq 0\}| \ll |\Omega|
 \end{equation}
-where $\mathcal{L}$ denotes the loss function. A generalisation gap of 0 implies that the model performs as well on unseen data as it does on the training data, while a high generalisation gap indicates a disparity. This would point to issues such as overfitting or underfitting.
+For numerical experiments, a threshold $\varepsilon > 0$ will be used to distinguish significant coefficients from those treated as numerically zero. Thus, the resulting sparsity measure is
+\begin{equation}
+    |\{\omega \in \Omega : | c_{\omega}(\theta) | > \varepsilon \}| \ll |\Omega|
+\end{equation}
+Existing theoretical work has established generalisation bounds for parameterised quantum circuits in terms of properties including sparsity \cite{Caro21}. Intuitively, a model with a sparse Fourier spectrum has fewer active frequency components contributing to its output, restricting the complexity of the functions it can represent. Such restrictions may influence the model's ability to fit training data and generalise to unseen data. However, existing generalisation bounds may not fully capture the empirical behaviour of QML models, motivating numerical investigation.\\
+~\\
+A useful metric when evaluating the performance of a machine learning model is the generalisation gap \cite{RodriguezGrasa26}. This is empirically defined as
+\begin{equation}
+    \Delta \mathcal{L} = \mathcal{L}_{test} - \mathcal{L}_{train}
+\end{equation}
+where $\mathcal{L}_{train}$ is the average value of a chosen loss function over the training dataset, and $\mathcal{L}_{test}$ is the average value of the same loss function over a separate test dataset that is not used during training. A positive generalisation gap indicates that the model incurs a greater loss on the test data than on the training data, which may indicate overfitting. A gap close to zero indicates similar average losses on the two datasets, though does not necessarily imply good performance on either.\\
+~\\
+Primary analysis will focus on in-distribution generalisation, with training and test examples sampled independently from the same underlying data distribution. Out-of-distribution evaluation may be considered as an extension.
 \par
 }
 
 \subsection{Implementation Details}
 {\large
 \raggedright
-QML models will be implemented in Python using the \href{https://pennylane.ai}{\color{blue} PennyLane} library for QC, alongside an appropriate ML library. The aim is to create a pipeline, perhaps implementing a simple ML problem, which can be extended to learn \href{https://pennylane.ai/datasets/conventional-datasets-for-qml}{\color{blue} conventional datasets} such as the MNIST\cite{LeCun98} dataset of hand-drawn digits.\\
+QML models will be implemented in Python using \href{https://pennylane.ai}{\color{blue} PennyLane}, alongside an appropriate classical machine learning (ML) library. Several candidate architectures will be considered, including hardware-efficient parameterised quantum circuits, data-reuploading circuits, and quantum convolutional neural networks (QCNNs). These architectures offer different circuit structures and data-encoding strategies that may influence the Fourier spectra of the resulting models. The initial implementation will prioritise relatively simple architectures to establish a functional training and evaluation pipeline, with more complex architectures considered if time and computational resources permit.\\
+~\\
+Candidate learning tasks will include synthetic classification problems, synthetic regression tasks, and conventional datasets such as Iris \cite{Fisher36} and MNIST \cite{LeCun98}. Synthetic problems offer greater control over the data distribution and target function, making them particularly suitable for investigating the relationship between Fourier spectral properties and generalisation. Conventional datasets may be considered to assess whether the observed relationships extend to more realistic learning tasks.\\
+~\\
+The final selection of architectures and learning tasks will be guided by their suitability for Fourier spectral analysis, the feasibility of training the models, and the ability to obtain meaningful variation in their spectral properties. The initial experiments will establish the pipeline using a relatively simple task before progressing to more complex configurations where appropriate.\\
 ~\\
 To speed up the process of training, I intend to use the DCS Batch Compute system\footnotemark[1] so that training can take place round the clock.
 }

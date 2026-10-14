@@ -4,5 +4,16 @@
 \label{sec:ProblemStatement}
 
 \large{\raggedright
-While results about how sparsity affects generalisation behaviour are known \cite{Caro21}, we lack numerical explorations of how Fourier sparsity influences generalisation behaviour. In particular, given the current state of the literature, it is possible that the Fourier sparsity-based generalisation bounds proven so far are overly pessimistic\cite{Zhang16, Zhang21, GilFuster24}, or that other properties of the Fourier spectrum may hold more explanatory power for generalisation in QML models. The aim of this project is to create and train various QML models so that experimental data can be obtained, which would be used to analyse how sparsity correlates to the generalisation gap.\\
+Quantum machine learning (QML) investigates the use of quantum computational models for machine learning tasks. One common approach uses parameterised quantum circuits, in which classical input data are encoded into a quantum state, trainable quantum gates transform that state, and measurements produce the model's output. The output of such a model can be expressed as
+\begin{equation}
+    f_{\theta}(\bm{x}) = \langle 0|^{\otimes n} U^{\dagger}(\bm{x},\bm{\theta}) O U(\bm{x},\bm{\theta}) |0 \rangle^{\otimes n}
+\end{equation}
+where $x$ is the input data, $\theta$ is the vector of trainable parameters, $U(\bm{x},\bm{\theta})$ represents the quantum circuit, and $O$ is the observable being measured.\\
+~\\
+The circuit parameters are optimised using a classical training procedure to minimise a loss function, resulting in a hybrid quantum-classical learning model.\\
+~\\
+An important property of parameterised quantum circuits is that their outputs can be expressed as finite Fourier series \cite{Schuld21}. This representation allows the spectral properties of QML models, including Fourier sparsity, to be investigated in relation to their generalisation performance.\\
+~\\
+While results about how sparsity affects generalisation behaviour are known \cite{Caro21}, we lack numerical explorations. In particular, given the current state of the literature, it is possible that the Fourier sparsity-based generalisation bounds proven so far are overly pessimistic, or that other properties of the Fourier spectrum may hold more explanatory power for generalisation in QML models. Existing generalisation bounds may not fully explain the empirical behaviour of QML models. For example, classical deep learning models can generalise despite having the ability to memorise random labels \cite{Zhang16, Zhang21}, and similar phenomena have been investigated in quantum architectures \cite{GilFuster24}. These observations motivate investigating whether Fourier sparsity, or other properties of the Fourier spectrum, can better explain the generalisation behaviour of QML models. This project will use numerical simulations to investigate these relationships empirically.
+\par
 }

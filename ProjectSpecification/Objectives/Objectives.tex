@@ -8,24 +8,47 @@
 
 \subsection*{Research}
 \begin{itemize}
-    \item Quantum Computing
-    \item Quantum Machine Learning
-    \item Fourier representation of QML models
-    \item Generalisation gap analysis
+    \item Review the literature on QML, Fourier representations of parameterised quantum circuits, and generalisation in quantum models.
 \end{itemize}
 
 \subsection*{Implementation}
+\subsubsection*{Must}
 \begin{itemize}
-    \item Create a pipeline for the creation, training and evaluation of QML models using PennyLane
-    \item Use the pipeline to create QML models for various relevant QML problems, focusing on generating models with Fourier spectra expressing the desired properties
+    \item Develop a reproducible pipeline to construct, train and evaluate parameterised quantum circuits on a supervised learning task
+    \item Support gradient-based optimisation and record the training configuration, model parameters and evaluation results
+    \item Implement a method to estimate or calculate the Fourier spectrum of the selected models
+    \item Train multiple models that exhibit variation in their Fourier sparsity
+\end{itemize}
+
+\subsubsection*{Should}
+\begin{itemize}
+    \item Allow the choice of optimiser and relevant hyperparameters
+    \item Extend the experiments to a second learning task or circuit architecture
+\end{itemize}
+
+\subsubsection*{Could}
+\begin{itemize}
+    \item Extend the pipeline to more complex datasets
+    \item Investigate alternative quantum circuit architectures
 \end{itemize}
 
 \subsection*{Analysis}
+\subsubsection*{Must}
 \begin{itemize}
-    \item Collect data on the performance of the QML models on seen and unseen data
-    \item Use the collected data to evaluate the generalisation gap\cite{RodriguezGrasa26}
+    \item Evaluate the training loss, test loss and generalisation gap for each model
+    \item Investigate the relationship between Fourier sparsity and the observed generalisation gap
 \end{itemize}
 
-If all of the above are completed, the scope of the project may extend to include considerations of the role of Fourier spectra in classical ML, or rigorous proofs of generalisation bounds from Fourier sparsity.
+\subsubsection*{Should}
+\begin{itemize}
+    \item Repeat experiments using different initialisations to assess the variability of results
+\end{itemize}
+
+\subsubsection*{Could}
+\begin{itemize}
+    \item Investigate generalisation under a distribution shift
+    \item Produce rigorous proofs of generalisation bounds from Fourier sparsity
+    \item Investigate whether other properties of the Fourier spectrum provide additional explanatory power for observed generalisation behaviour
+\end{itemize}
 
 \end{flushleft}

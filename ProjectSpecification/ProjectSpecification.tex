@@ -16,8 +16,9 @@
 \usepackage{tabularx}
 \usepackage{appendix}
 
+\usepackage{bm}
 \usepackage{pgfgantt}
-\usepackage[super,square,sort&compress]{natbib}
+\usepackage[square, numbers]{natbib}
 
 % KEEP LAST
 \usepackage[hidelinks]{hyperref}
@@ -42,17 +43,16 @@
 %\include{ProjectSpecification/Preamble/Lists}
 \include{ProjectSpecification/Preamble/ChapterMods}
 
-
 \input{ProjectSpecification/ProblemStatement/ProblemStatement}
 \vspace{20pt}
 \hrule
 \input{ProjectSpecification/Objectives/Objectives}
 \input{ProjectSpecification/MethodsAndMethodology/MethodsAndMethodology}
-\include{ProjectSpecification/Timetable/Timetable}
-\input{ProjectSpecification/ResourcesAndRisks/ResourcesAndRisks}
 \vspace{20pt}
 \hrule
-\input{ProjectSpecification/IssuesAndConsiderations/IssuesAndConsiderations}
+\input{ProjectSpecification/Timetable/Timetable}
+\input{ProjectSpecification/ResourcesAndRisks/ResourcesAndRisks}
+\include{ProjectSpecification/IssuesAndConsiderations/IssuesAndConsiderations}
 
 \newpage
 \bibliographystyle{unsrtnat}
