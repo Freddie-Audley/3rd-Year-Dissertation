@@ -6,9 +6,7 @@ CS344 Discrete Mathematics Project
 
 Supervisor: Dr Matthias C. Caro 
 
-### **Department of Computer Science** 
-
-University of Warwick 
+Department of Computer Science, University of Warwick 
 
 ## **1 Problem Statement** 
 
