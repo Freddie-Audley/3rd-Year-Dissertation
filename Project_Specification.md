@@ -96,7 +96,7 @@ A useful metric when evaluating the performance of a machine learning model is t
 
 $$ \Delta \mathcal{L} = \mathcal{L}\_{test} - \mathcal{L}\_{train} $$
 
-where $\mathcal{L}\_{train}$ is the average value of a chosen loss function over the training dataset, and $\mathcal{L}\{test}$ is the average value of the same loss function over a separate test dataset that is not used during training. A positive generalisation gap indicates that the model incurs a greater loss on the test data than on the training data, which may indicate overfitting. A gap close to zero indicates similar average losses on the two datasets, though does not necessarily imply good performance on either. 
+where $\mathcal{L}\_{train}$ is the average value of a chosen loss function over the training dataset, and $\mathcal{L}\_{test}$ is the average value of the same loss function over a separate test dataset that is not used during training. A positive generalisation gap indicates that the model incurs a greater loss on the test data than on the training data, which may indicate overfitting. A gap close to zero indicates similar average losses on the two datasets, though does not necessarily imply good performance on either. 
 
 Primary analysis will focus on in-distribution generalisation, with training and test examples sampled independently from the same underlying data distribution. Out-of-distribution evaluation may be considered as an extension. 
 
