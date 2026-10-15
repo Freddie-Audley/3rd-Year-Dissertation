@@ -14,7 +14,7 @@ Quantum machine learning (QML) investigates the use of quantum computational mod
 
 $$ f_{\theta}(\mathbf{x}) = \langle 0|^{\otimes n} U^{\dagger}(\mathbf{x},\mathbf{\theta}) O U(\mathbf{x},\mathbf{\theta}) |0 \rangle^{\otimes n} $$
 
-where $\mathbf{x}$ is the input data, $\mathbf{\theta}$ is the vector of trainable parameters, $U(\mathbf{x},\mathbf{\theta})$ represents the quantum circuit, and $O$ is the observable being measured. 
+where $\mathbf{x}$ is the input data, θ is the vector of trainable parameters, U($\mathbf{x}$, θ) represents the quantum circuit, and O is the observable being measured. 
 
 The circuit parameters are optimised using a classical training procedure to minimise a loss function, resulting in a hybrid quantum-classical learning model. 
 
