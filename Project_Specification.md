@@ -14,9 +14,9 @@ University of Warwick
 
 Quantum machine learning (QML) investigates the use of quantum computational models for machine learning tasks. One common approach uses parameterised quantum circuits, in which classical input data are encoded into a quantum state, trainable quantum gates transform that state, and measurements produce the model’s output. The output of such a model can be expressed as 
 
-$$ f_{\theta}(\bm{x}) = \langle 0|^{\otimes n} U^{\dagger}(\bm{x},\bm{\theta}) O U(\bm{x},\bm{\theta}) |0 \rangle^{\otimes n} $$
+$$ f_{\theta}(\mathbf{x}) = \langle 0|^{\otimes n} U^{\dagger}(\mathbf{x},\mathbf{\theta}) O U(\mathbf{x},\mathbf{\theta}) |0 \rangle^{\otimes n} $$
 
-where $\bm{x}$ is the input data, $\bm{\theta}$ is the vector of trainable parameters, $U(\bm{x},\bm{\theta})$ represents the quantum circuit, and $O$ is the observable being measured. 
+where $\mathbf{x}$ is the input data, $\mathbf{\theta}$ is the vector of trainable parameters, $U(\mathbf{x},\mathbf{\theta})$ represents the quantum circuit, and $O$ is the observable being measured. 
 
 The circuit parameters are optimised using a classical training procedure to minimise a loss function, resulting in a hybrid quantum-classical learning model. 
 
@@ -94,9 +94,9 @@ Existing theoretical work has established generalisation bounds for parameterise
 
 A useful metric when evaluating the performance of a machine learning model is the generalisation gap [6]. This is empirically defined as 
 
-$$ \Delta \mathcal{L} = \mathcal{L}_{test} - \mathcal{L}_{train} $$
+$$ \Delta \mathcal{L} = \mathcal{L}\_{test} - \mathcal{L}\_{train} $$
 
-where $\mathcal{L}_{train}$ is the average value of a chosen loss function over the training dataset, and $\mathcal{L}_{test}$ is the average value of the same loss function over a separate test dataset that is not used during training. A positive generalisation gap indicates that the model incurs a greater loss on the test data than on the training data, which may indicate overfitting. A gap close to zero indicates similar average losses on the two datasets, though does not necessarily imply good performance on either. 
+where $\mathcal{L}\_{train}$ is the average value of a chosen loss function over the training dataset, and $\mathcal{L}\{test}$ is the average value of the same loss function over a separate test dataset that is not used during training. A positive generalisation gap indicates that the model incurs a greater loss on the test data than on the training data, which may indicate overfitting. A gap close to zero indicates similar average losses on the two datasets, though does not necessarily imply good performance on either. 
 
 Primary analysis will focus on in-distribution generalisation, with training and test examples sampled independently from the same underlying data distribution. Out-of-distribution evaluation may be considered as an extension. 
 
@@ -126,7 +126,7 @@ Small scale experiments may not be sufficiently expressive to support interpreta
 
 Given the specialised nature of the project, additional time has been allocated for preliminary research. The timetable also incorporates buffers to accommodate external academic commitments and other unforeseen circumstances. 
 
-> 1 `https://warwick.ac.uk/fac/sci/dcs/admissions/postgraduatetaughtdegrees/ facilities_research/` ”High-performance computing” 
+> 1 `https://warwick.ac.uk/fac/sci/dcs/admissions/postgraduatetaughtdegrees/facilities_research/` ”High-performance computing” 
 
 ## **6 Legal, Social, Ethical and Professional Issues & Considerations** 
 
