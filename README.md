@@ -146,8 +146,8 @@ Statistical analysis will be completed using established methods [6] to ensure t
 
 - [6] Pablo Rodriguez-Grasa, Matthias C. Caro, Jens Eisert, Elies GilFuster, Franz J. Schreiber, and Carlos Bravo-Prieto. A PACbayesian approach to generalization for quantum models. _arXiv preprint arXiv:2603.22964_ , 2026. URL `https://arxiv.org/ abs/2603.22964` . 
 
-- [7] R. A. FISHER. The use of multiple measurements in taxonomic problems. _Annals of Eugenics_ , 7(2):179–188, 1936. doi: https://doi.org/10.1111/j.1469-1809.1936.tb02137.x. URL `https://onlinelibrary.wiley.com/doi/abs/10.1111/ j.1469-1809.1936.tb02137.x` . 
+- [7] R. A. FISHER. The use of multiple measurements in taxonomic problems. _Annals of Eugenics_ , 7(2):179–188, 1936. doi: `https://doi.org/10.1111/j.1469-1809.1936.tb02137.x`. URL `https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1469-1809.1936.tb02137.x`. 
 
-- [8] Yann LeCun, L´eon Bottou, Yoshua Bengio, and Patrick Haffner. Gradient-based learning applied to document recognition. _Proceedings of the IEEE_ , 86(11):2278–2324, 1998. doi: 10.1109/ 5.726791. URL `http://yann.lecun.com/exdb/publis/pdf/ lecun-98.pdf` . 
+- [8] Yann LeCun, L´eon Bottou, Yoshua Bengio, and Patrick Haffner. Gradient-based learning applied to document recognition. _Proceedings of the IEEE_ , 86(11):2278–2324, 1998. doi: 10.1109/ 5.726791. URL `http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf` . 
 
 - [9] Richard Jozsa. Quantum information and computation lecture notes, 2019. URL `https://www.qi.damtp.cam.ac.uk/files/ PartIIIQC/Part%202%20QIC%20lecturenotes.pdf` . Accessed: August - September, 2026. 
