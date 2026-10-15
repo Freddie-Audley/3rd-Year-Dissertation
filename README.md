@@ -82,11 +82,11 @@ $$ f_{\theta}(x)=\sum_{\omega \in \Omega}c_{\omega}(\theta)e^{i \omega x} $$
 
 A model is considered ”Fourier sparse” if the number of non-zero Fourier coefficients is small relative to the total number of accessible frequencies: 
 
-$$ |\{\omega \in \Omega : |c_{\omega}(\theta)| \neq 0\}| \ll |\omega | $$
+$$ |\{\omega \in \Omega : |c_{\omega}(\theta)| \neq 0\}| \ll |\Omega | $$
 
 For numerical experiments, a threshold $\varepsilon > 0$ will be used to distinguish significant coefficients from those treated as numerically zero. Thus, the resulting sparsity measure is 
 
-$$ |\{\omega \in \Omega : |c_{\omega}(\theta)| > \varepsilon \}| \ll |\omega | $$
+$$ |\{\omega \in \Omega : |c_{\omega}(\theta)| > \varepsilon \}| \ll |\Omega | $$
 
 Existing theoretical work has established generalisation bounds for parameterised quantum circuits in terms of properties including sparsity [2]. Intuitively, a model with a sparse Fourier spectrum has fewer active frequency components contributing to its output, restricting the complexity of the functions it can represent. Such restrictions may influence the model’s ability to fit training data and generalise to unseen data. However, existing generalisation bounds may not fully capture the empirical behaviour of QML models, motivating numerical investigation. 
 
