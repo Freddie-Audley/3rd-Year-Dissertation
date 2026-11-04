@@ -3,7 +3,7 @@ from pennylane import numpy as np
 
 
 class VariationalQuantumStateLearner:
-    def __init__(self, num_qubits=2, num_layers=2):
+    def __init__(self, num_qubits, num_layers):
         self.num_qubits = num_qubits
         self.num_layers = num_layers
         self.device = qp.device("default.qubit", wires=self.num_qubits)
@@ -40,7 +40,7 @@ class VariationalQuantumStateLearner:
 
 
 if __name__ == "__main__":
-    learner = VariationalQuantumStateLearner()
+    learner = VariationalQuantumStateLearner(num_qubits=2, num_layers=2)
 
     # Define the target state as the Bell State |Φ+⟩ = (|00⟩ + |11⟩) / √2
     target_state = np.array([1, 0, 0, 1]) / np.sqrt(2)
