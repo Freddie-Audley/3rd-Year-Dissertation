@@ -21,7 +21,7 @@ class VariationalQuantumStateLearner:
 
     def initialize_parameters(self):
         weights_shape = qp.StronglyEntanglingLayers.shape(n_layers=self.num_layers, n_wires=self.num_qubits)
-        self.params = np.random.uniform(low=0, high=2 * np.pi, size=weights_shape, requires_grad=True)
+        self.params = np.random.uniform(low=0, high=2*np.pi, size=weights_shape, requires_grad=True)
         return self.params
 
     def train(self, observable, optimiser=qp.GradientDescentOptimizer, step_size=0.01, steps=100):
