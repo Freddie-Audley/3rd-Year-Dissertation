@@ -3,24 +3,25 @@ from pennylane import numpy as np
 
 
 class VariationalQuantumStateLearner:
-    def __init__(self, num_qubits, num_layers):
+    def __init__(self, num_qubits, num_layers, ansatz=qp.StronglyEntanglingLayers):
         self.num_qubits = num_qubits
         self.num_layers = num_layers
+        self.ansatz = ansatz
         self.device = qp.device("default.qubit", wires=self.num_qubits)
         self._ansatz_qnode = qp.QNode(self._ansatz_circuit, self.device)
         self._state_qnode = qp.QNode(self._state_circuit, self.device)
         self.initialize_parameters()
 
     def _ansatz_circuit(self, params, observable):
-        qp.StronglyEntanglingLayers(weights=params, wires=range(self.num_qubits))
+        self.ansatz(weights=params, wires=range(self.num_qubits))
         return qp.expval(observable)
 
     def _state_circuit(self, params):
-        qp.StronglyEntanglingLayers(weights=params, wires=range(self.num_qubits))
+        self.ansatz(weights=params, wires=range(self.num_qubits))
         return qp.state()
 
     def initialize_parameters(self):
-        weights_shape = qp.StronglyEntanglingLayers.shape(n_layers=self.num_layers, n_wires=self.num_qubits)
+        weights_shape = self.ansatz.shape(n_layers=self.num_layers, n_wires=self.num_qubits)
         self.params = np.random.uniform(low=0, high=2*np.pi, size=weights_shape, requires_grad=True)
         return self.params
 
