@@ -52,12 +52,21 @@ class SupervisedQuantumLearner:
 
         self.loss_history = []
 
-        for i in range(steps):
-            self.parameters = optimiser.step(objective_function, self.parameters)
-            self.loss_history.append(objective_function(self.parameters))
+        for step in range(steps):
+            self.parameters, loss = optimiser.step_and_cost(
+                objective_function, self.parameters
+            )
 
-            if i % 100 == 0:
-                print(f"Step {i}: Loss = {self.loss_history[-1]}")
+            if step > 0:
+                self.loss_history.append(loss)
+                if (step - 1) % 100 == 0:
+                    print(f"Step {step - 1}: Loss = {loss}")
+
+        if steps > 0:
+            final_loss = objective_function(self.parameters)
+            self.loss_history.append(final_loss)
+            if (steps - 1) % 100 == 0:
+                print(f"Step {steps - 1}: Loss = {final_loss}")
 
         return self.parameters
 
@@ -70,14 +79,17 @@ class SupervisedQuantumLearner:
 
 
 if __name__ == "__main__":
-    # Demo: f(x1, x2) = (cos(x1) + cos(x2)) / 2
-    
-    learner = SupervisedQuantumLearner(num_qubits=2, num_layers=2, observable=0.5*(qp.Z(wires=0)+qp.Z(wires=1)))
+    # (cos(x1 + x2) + cos(x2 + x3) + cos(x3 + x1)) / 3
+    def target_function(features):
+        x1, x2, x3 = features.T
+        return (np.cos(x1 + x2) + np.cos(x2 + x3) + np.cos(x3 + x1)) / 3
 
-    angles = np.linspace(0, 2 * np.pi, 20, endpoint=False)
-    x1, x2 = np.meshgrid(angles, angles, indexing="ij")
-    feature_vectors = np.column_stack((x1.flatten(), x2.flatten()))
-    targets = (np.cos(feature_vectors[:, 0]) + np.cos(feature_vectors[:, 1])) / 2
+    learner = SupervisedQuantumLearner(num_qubits=3, num_layers=3, observable=(qp.Z(wires=0) + qp.Z(wires=1) + qp.Z(wires=2)) / 3)
+
+    angles = np.linspace(0, 2 * np.pi, 8, endpoint=False)
+    x1, x2, x3 = np.meshgrid(angles, angles, angles, indexing="ij")
+    feature_vectors = np.column_stack((x1.flatten(), x2.flatten(), x3.flatten()))
+    targets = target_function(feature_vectors)
 
     rng = np.random.default_rng(seed=261104)
     indices = rng.permutation(len(feature_vectors))
@@ -88,7 +100,7 @@ if __name__ == "__main__":
     X_train, y_train = feature_vectors[train_indices], targets[train_indices]
     X_test, y_test = feature_vectors[test_indices], targets[test_indices]
 
-    learner.train(X_train, y_train, steps=200)
+    learner.train(X_train, y_train, steps=100)
 
     train_loss = learner.evaluate(X_train, y_train)
     test_loss = learner.evaluate(X_test, y_test)
@@ -104,25 +116,30 @@ if __name__ == "__main__":
     plt.title("Training Loss")
     plt.grid()
 
-    learned_values = np.array([learner.predict(features) for features in feature_vectors])
-    learned_values = learned_values.reshape(x1.shape)
-    target_values = targets.reshape(x1.shape)
+    plot_angles = np.linspace(0, 2 * np.pi, 30)
+    x1_plot, x2_plot = np.meshgrid(plot_angles, plot_angles, indexing="ij")
+    slice_features = np.column_stack(
+        (x1_plot.flatten(), x2_plot.flatten(), np.zeros(x1_plot.size))
+    )
+    learned_values = np.array([learner.predict(features) for features in slice_features])
+    learned_values = learned_values.reshape(x1_plot.shape)
+    target_values = target_function(slice_features).reshape(x1_plot.shape)
 
     function_figure = plt.figure("Target and learned functions")
     target_axis = function_figure.add_subplot(1, 2, 1, projection="3d")
     learned_axis = function_figure.add_subplot(1, 2, 2, projection="3d")
 
-    target_axis.plot_surface(x1, x2, target_values, cmap="viridis")
-    target_axis.set_title("Target function")
+    target_axis.plot_surface(x1_plot, x2_plot, target_values, cmap="viridis")
+    target_axis.set_title("Target function (x3 = 0)")
     target_axis.set_xlabel("x1")
     target_axis.set_ylabel("x2")
-    target_axis.set_zlabel("f(x1, x2)")
+    target_axis.set_zlabel("f(x1, x2, 0)")
 
-    learned_axis.plot_surface(x1, x2, learned_values, cmap="viridis")
-    learned_axis.set_title("Learned function")
+    learned_axis.plot_surface(x1_plot, x2_plot, learned_values, cmap="viridis")
+    learned_axis.set_title("Learned function (x3 = 0)")
     learned_axis.set_xlabel("x1")
     learned_axis.set_ylabel("x2")
-    learned_axis.set_zlabel("f(x1, x2)")
+    learned_axis.set_zlabel("f(x1, x2, 0)")
 
     function_figure.tight_layout()
     plt.show()
