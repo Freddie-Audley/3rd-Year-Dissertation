@@ -2,7 +2,7 @@ import pennylane as qp
 from pennylane import numpy as np
 
 import matplotlib
-matplotlib.use("QtAgg")
+matplotlib.use("QtAgg") # Arch Linux requires this backend
 import matplotlib.pyplot as plt
 
 
@@ -27,9 +27,7 @@ class SupervisedQuantumLearner:
 
     def _circuit(self, features, parameters):
         self.encoding(features, self.num_qubits)
-
         self.ansatz(weights=parameters, wires=range(self.num_qubits))
-
         return qp.expval(self.observable)
 
     def initialise_parameters(self):
@@ -54,9 +52,12 @@ class SupervisedQuantumLearner:
 
         self.loss_history = []
 
-        for _ in range(steps):
+        for i in range(steps):
             self.parameters = optimiser.step(objective_function, self.parameters)
-            self.loss_history.append(objective_function(self.parameters))
+            # self.loss_history.append(objective_function(self.parameters))
+
+            if i % 100 == 0:
+                print(f"{i/20}% Step {i}: Loss = {objective_function(self.parameters)}")
 
         return self.parameters
 
@@ -71,9 +72,9 @@ class SupervisedQuantumLearner:
 if __name__ == "__main__":
     # Demo: f(x1, x2) = (cos(x1) + cos(x2)) / 2
     
-    learner = SupervisedQuantumLearner(num_qubits=2, num_layers=2, observable=qp.Z(wires=0))
+    learner = SupervisedQuantumLearner(num_qubits=2, num_layers=2, observable=0.5*(qp.Z(wires=0)+qp.Z(wires=1)))
 
-    angles = np.linspace(0, 2 * np.pi, 12, endpoint=False)
+    angles = np.linspace(0, 2 * np.pi, 20, endpoint=False)
     x1, x2 = np.meshgrid(angles, angles, indexing="ij")
     feature_vectors = np.column_stack((x1.flatten(), x2.flatten()))
     targets = (np.cos(feature_vectors[:, 0]) + np.cos(feature_vectors[:, 1])) / 2
@@ -87,7 +88,7 @@ if __name__ == "__main__":
     X_train, y_train = feature_vectors[train_indices], targets[train_indices]
     X_test, y_test = feature_vectors[test_indices], targets[test_indices]
 
-    learner.train(X_train, y_train, steps=1000)
+    learner.train(X_train, y_train, steps=2000)
 
     train_loss = learner.evaluate(X_train, y_train)
     test_loss = learner.evaluate(X_test, y_test)
@@ -96,9 +97,32 @@ if __name__ == "__main__":
     print("Test Loss:", test_loss)
     print("Generalisation Gap:", test_loss - train_loss)
 
+    plt.figure("Training Loss")
     plt.plot(learner.loss_history)
     plt.xlabel("Training Steps")
     plt.ylabel("Mean Squared Error")
     plt.title("Training Loss")
     plt.grid()
+
+    learned_values = np.array([learner.predict(features) for features in feature_vectors])
+    learned_values = learned_values.reshape(x1.shape)
+    target_values = targets.reshape(x1.shape)
+
+    function_figure = plt.figure("Target and learned functions")
+    target_axis = function_figure.add_subplot(1, 2, 1, projection="3d")
+    learned_axis = function_figure.add_subplot(1, 2, 2, projection="3d")
+
+    target_axis.plot_surface(x1, x2, target_values, cmap="viridis")
+    target_axis.set_title("Target function")
+    target_axis.set_xlabel("x1")
+    target_axis.set_ylabel("x2")
+    target_axis.set_zlabel("f(x1, x2)")
+
+    learned_axis.plot_surface(x1, x2, learned_values, cmap="viridis")
+    learned_axis.set_title("Learned function")
+    learned_axis.set_xlabel("x1")
+    learned_axis.set_ylabel("x2")
+    learned_axis.set_zlabel("f(x1, x2)")
+
+    function_figure.tight_layout()
     plt.show()
