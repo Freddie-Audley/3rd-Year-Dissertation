@@ -40,7 +40,7 @@ class SupervisedQuantumLearner:
             parameters = self.parameters
         return self._qnode(features, parameters)
 
-    def train(self, feature_vectors, targets, optimiser=qp.GradientDescentOptimizer, cost_function=None, step_size=0.01, steps=100):
+    def train(self, feature_vectors, targets, optimiser=qp.AdamOptimizer, cost_function=None, step_size=0.01, steps=100):
         if cost_function is None:
             cost_function = lambda predictions, targets: np.mean((predictions - targets) ** 2)  # Mean Squared Error
 
@@ -54,10 +54,10 @@ class SupervisedQuantumLearner:
 
         for i in range(steps):
             self.parameters = optimiser.step(objective_function, self.parameters)
-            # self.loss_history.append(objective_function(self.parameters))
+            self.loss_history.append(objective_function(self.parameters))
 
             if i % 100 == 0:
-                print(f"{i/20}% Step {i}: Loss = {objective_function(self.parameters)}")
+                print(f"Step {i}: Loss = {self.loss_history[-1]}")
 
         return self.parameters
 
@@ -88,7 +88,7 @@ if __name__ == "__main__":
     X_train, y_train = feature_vectors[train_indices], targets[train_indices]
     X_test, y_test = feature_vectors[test_indices], targets[test_indices]
 
-    learner.train(X_train, y_train, steps=2000)
+    learner.train(X_train, y_train, steps=200)
 
     train_loss = learner.evaluate(X_train, y_train)
     test_loss = learner.evaluate(X_test, y_test)
